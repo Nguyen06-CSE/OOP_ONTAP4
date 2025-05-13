@@ -26,23 +26,26 @@ namespace OOP_ONTAP3
             double nhienLieu = double.Parse(Console.ReadLine());
             Console.WriteLine("nhap vi tri: ");
             string viTri = Console.ReadLine();
+            Console.WriteLine("nhap muc nhien lieu tieu hao cua phuong tien");
+            double nhienLieuTieuHao = double.Parse(Console.ReadLine());
             Console.WriteLine("nhap loai phuong tien: ");
             string loai = Console.ReadLine();
+            
             Vehicle pt = null;
 
             switch (loai)
             {
                 case "Car":
-                    pt = new Car(name, tocDo, nhienLieu, viTri);
+                    pt = new Car(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
                     break;
                 case "Boat":
-                    pt = new Boat(name, tocDo, nhienLieu, viTri);
+                    pt = new Boat(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
                     break;
                 case "Seaplane":
-                    pt = new Seaplane(name, tocDo, nhienLieu, viTri);
+                    pt = new Seaplane(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
                     break;
                 case "Submarine":
-                    pt = new Submarine(name, tocDo, nhienLieu, viTri);
+                    pt = new Submarine(name, tocDo, nhienLieu, viTri    , nhienLieuTieuHao);
                     break;
             }
             if (pt != null)
@@ -70,6 +73,7 @@ namespace OOP_ONTAP3
                 double tocDo = double.Parse(pair[2]);
                 double nhienLieu = double.Parse(pair[3]);
                 string viTri = pair[4];
+                double nhienLieuTieuHao = double.Parse(pair[5]);
 
 
                 Vehicle pt = null;
@@ -77,16 +81,16 @@ namespace OOP_ONTAP3
                 switch(loai)
                 {
                     case "Car":
-                        pt = new Car(ten, tocDo, nhienLieu, viTri);
+                        pt = new Car(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
                         break;
                     case "Boat":
-                        pt = new Boat(ten, tocDo, nhienLieu, viTri);
+                        pt = new Boat(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
                         break;
                     case "Seaplane":
-                        pt = new Seaplane(ten, tocDo, nhienLieu, viTri);
+                        pt = new Seaplane(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
                         break;
                     case "Submarine":
-                        pt = new Submarine(ten, tocDo, nhienLieu, viTri);
+                        pt = new Submarine(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
                         break;
                 }
                 if (pt != null)
@@ -449,10 +453,10 @@ namespace OOP_ONTAP3
             }
         }
 
-        public double TimMaxTocDo()
+        public double FindMaxTocDo(List<Vehicle> list)
         {
             double maxVal = 0;
-            foreach(var item in collection)
+            foreach(var item in list)
             {
                 if(item.TocDo > maxVal)
                 {
@@ -462,10 +466,24 @@ namespace OOP_ONTAP3
             return maxVal;
         }
 
+        public double FindMinNhienLieu(List<Vehicle> list)
+        {
+            double minVal = double.MaxValue;
+            foreach (var item in list)
+            {
+                if (item.NhienLieu < minVal)
+                {
+                    minVal = item.NhienLieu;
+                }
+            }
+
+            return minVal;
+        }
+
         public DanhSachPhuongTien TimPhuongTienCoTocDoCaoNhat()
         {
             DanhSachPhuongTien res = new DanhSachPhuongTien();
-            double maxVal = TimMaxTocDo();
+            double maxVal = FindMaxTocDo(collection);
             foreach(var item in collection)
             {
                 if(item.TocDo == maxVal)
@@ -475,6 +493,182 @@ namespace OOP_ONTAP3
             }
             return res;
 
+        }
+
+       
+
+        public DanhSachPhuongTien TimPhuongTienCoNhienLieuThapNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            double minVal = FindMinNhienLieu(collection);
+            foreach(var item in collection)
+            {
+                if(item.NhienLieu == minVal)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public void XoaTatCaPhuongTienCoTheLai()
+        {
+            foreach(var item in collection)
+            {
+                if(item is IDriveable)
+                {
+                    collection.Remove(item);
+                }
+            }
+        }
+
+        public void XoaTatCaPhuongTienCoTheBay()
+        {
+            foreach (var item in collection)
+            {
+                if (item is IFlyable)
+                {
+                    collection.Remove(item);
+                }
+            }
+        }
+
+        public void XoaTatCaPhuongTienCoTheNoi()
+        {
+            foreach (var item in collection)
+            {
+                if (item is IFloatable)
+                {
+                    collection.Remove(item);
+                }
+            }
+        }
+
+        public void XoaTatCaPhuongTienCoTheLan()
+        {
+            foreach (var item in collection)
+            {
+                if (item is IDiveable)
+                {
+                    collection.Remove(item);
+                }
+            }
+        }
+
+        public void XoaTatCaPhuongTien()
+        {
+            collection.Clear();
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoTheLaiTocDoLonNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var list = TimPhuongTienCoTheLai().collection;
+            double maxVal = FindMaxTocDo(list);
+            foreach(var item in list)
+            {
+                if(item.TocDo == maxVal)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoTheBayTocDoLonNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var list = TimPhuongTienCoTheBay().collection;
+            double maxVal = FindMaxTocDo(list);
+            foreach (var item in list)
+            {
+                if (item.TocDo == maxVal)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoTheNoiTocDoLonNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var list = TimPhuongTienCoTheNoi().collection;
+            double maxVal = FindMaxTocDo(list);
+            foreach (var item in list)
+            {
+                if (item.TocDo == maxVal)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoTheLanTocDoLonNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var list = TimPhuongTienCoTheLan().collection;
+            double maxVal = FindMaxTocDo(list);
+            foreach (var item in list)
+            {
+                if (item.TocDo == maxVal)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public double FindMinNhieuLieuTieuHao()
+        {
+            double min = double.MaxValue;
+            foreach(var item in collection)
+            {
+                if(item.NhienLieuTieuHao < min)
+                {
+                    min = item.NhienLieuTieuHao;
+                }
+            }
+            return min;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoMucTieuHaoNhanLieuItNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var min = FindMinNhieuLieuTieuHao();
+            foreach(var item in collection)
+            {
+                if(item.NhienLieuTieuHao == min)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public double TinhTongSoKmCuaTatCaPhuongTien()
+        {
+            double res = 0;
+            foreach(var item in collection)
+            {
+                res += item.TinhQuangDuong();
+            }
+            return res;
+        }
+
+        public int DemSoLuongPhuongTienCoTocDoTrenMotNguong(double tocDo)
+        {
+            int dem = 0;
+            foreach(var item in collection)
+            {
+                if(item.TocDo > tocDo)
+                {
+                    ++dem;
+                }
+            }
+
+            return dem;
         }
 
     }

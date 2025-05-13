@@ -9,11 +9,11 @@ namespace OOP_ONTAP3
     public abstract class Vehicle
     {
         public string Name { get; set; }
-        public double TocDo { get; set; }         
-        public double NhienLieu { get; set; }     
-        public string ViTri { get; set; }         
+        public double TocDo { get; set; }
+        public double NhienLieu { get; set; }
+        public string ViTri { get; set; }
 
-
+        public double NhienLieuTieuHao {get; set;}
 
         protected Vehicle(string name)
         {
@@ -23,12 +23,13 @@ namespace OOP_ONTAP3
             ViTri = "bai do";
         }
 
-        protected Vehicle(string name, double tocDo, double nhienLieu, string viTri)
+        protected Vehicle(string name, double tocDo, double nhienLieu, string viTri, double nhienLieuTieuHao)
         {
             Name = name;
             TocDo = tocDo;
             NhienLieu = nhienLieu;
             ViTri = viTri;
+            NhienLieuTieuHao = nhienLieuTieuHao;
         }
 
         public abstract void DisplayInfo();
@@ -42,7 +43,7 @@ namespace OOP_ONTAP3
             }
 
             ViTri = viTriMoi;
-            NhienLieu -= 10; // tiêu hao nhiên liệu
+            NhienLieu -= NhienLieuTieuHao; // tiêu hao nhiên liệu
             Console.WriteLine($"{Name} đã di chuyển đến {ViTri}. Nhiên liệu còn lại: {NhienLieu}L");
         }
 
@@ -63,6 +64,20 @@ namespace OOP_ONTAP3
             TocDo -= vanToc;
             Console.WriteLine($"{Name} da giam {vanToc}km/h. Toc do hien tai {TocDo}km/h");
         }
+
+        public double TinhQuangDuong()
+        {
+            if (TocDo <= 0)
+            {
+               
+                return 0;
+            }
+
+            double quangDuong = NhienLieuTieuHao / TocDo;
+           
+            return quangDuong;
+        }
+
     }
 }
 

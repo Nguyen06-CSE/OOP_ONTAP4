@@ -8,8 +8,8 @@ namespace OOP_ONTAP3
 {
     public class Submarine : Vehicle, IDiveable, IFloatable
     {
-        public Submarine(string name, double tocDo, double nhienLieu, string viTri)
-            : base(name, tocDo, nhienLieu, viTri) { }
+        public Submarine(string name, double tocDo, double nhienLieu, string viTri, double nhienLieuTieuHao)
+            : base(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao) { }
 
         public void Dive()
         {
