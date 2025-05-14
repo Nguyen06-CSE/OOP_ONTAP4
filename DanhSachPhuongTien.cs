@@ -28,6 +28,10 @@ namespace OOP_ONTAP3
             string viTri = Console.ReadLine();
             Console.WriteLine("nhap muc nhien lieu tieu hao cua phuong tien");
             double nhienLieuTieuHao = double.Parse(Console.ReadLine());
+            Console.WriteLine("nhap nam san xuat");
+            int namSanXuat = int.Parse(Console.ReadLine());
+            Console.WriteLine("nhap nha san xuat: ");
+            string nhaSanXuat = Console.ReadLine();
             Console.WriteLine("nhap loai phuong tien: ");
             string loai = Console.ReadLine();
             
@@ -36,16 +40,16 @@ namespace OOP_ONTAP3
             switch (loai)
             {
                 case "Car":
-                    pt = new Car(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
+                    pt = new Car(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao, namSanXuat, nhaSanXuat);
                     break;
                 case "Boat":
-                    pt = new Boat(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
+                    pt = new Boat(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao, namSanXuat, nhaSanXuat);
                     break;
                 case "Seaplane":
-                    pt = new Seaplane(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
+                    pt = new Seaplane(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao, namSanXuat, nhaSanXuat);
                     break;
                 case "Submarine":
-                    pt = new Submarine(name, tocDo, nhienLieu, viTri    , nhienLieuTieuHao);
+                    pt = new Submarine(name, tocDo, nhienLieu, viTri    , nhienLieuTieuHao, namSanXuat, nhaSanXuat);
                     break;
             }
             if (pt != null)
@@ -74,6 +78,8 @@ namespace OOP_ONTAP3
                 double nhienLieu = double.Parse(pair[3]);
                 string viTri = pair[4];
                 double nhienLieuTieuHao = double.Parse(pair[5]);
+                int namSanXuat = int.Parse(pair[6]);
+                string nhaSanXuat = pair[7];
 
 
                 Vehicle pt = null;
@@ -81,16 +87,16 @@ namespace OOP_ONTAP3
                 switch(loai)
                 {
                     case "Car":
-                        pt = new Car(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
+                        pt = new Car(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao, namSanXuat, nhaSanXuat);
                         break;
                     case "Boat":
-                        pt = new Boat(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
+                        pt = new Boat(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao, namSanXuat, nhaSanXuat);
                         break;
                     case "Seaplane":
-                        pt = new Seaplane(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
+                        pt = new Seaplane(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao, namSanXuat, nhaSanXuat);
                         break;
                     case "Submarine":
-                        pt = new Submarine(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao);
+                        pt = new Submarine(ten, tocDo, nhienLieu, viTri, nhienLieuTieuHao, namSanXuat, nhaSanXuat);
                         break;
                 }
                 if (pt != null)
@@ -124,8 +130,7 @@ namespace OOP_ONTAP3
         {
             foreach (var pt in collection)
             {
-                pt.DisplayInfo();
-                Console.WriteLine();
+                Console.WriteLine(pt);
             }
         }
 
@@ -670,6 +675,427 @@ namespace OOP_ONTAP3
 
             return dem;
         }
+
+        public double FindMaxNhienLieu(List<Vehicle> list)
+        {
+            double max = 0;
+            foreach(var item in list)
+            {
+                if(max < item.NhienLieu)
+                {
+                    max = item.NhienLieu;
+                }
+            }
+            return max;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoTheLaiCoNhienLieuNhieuNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var list = TimPhuongTienCoTheLai().collection;
+            var max = FindMaxNhienLieu(list);
+            foreach(var item in list)
+            {
+                if(item.NhienLieu == max)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoTheBayCoNhienLieuNhieuNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var list = TimPhuongTienCoTheBay().collection;
+            var max = FindMaxNhienLieu(list);
+            foreach (var item in list)
+            {
+                if (item.NhienLieu == max)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoTheNoiCoNhienLieuNhieuNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var list = TimPhuongTienCoTheNoi().collection;
+            var max = FindMaxNhienLieu(list);
+            foreach (var item in list)
+            {
+                if (item.NhienLieu == max)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoTheLanCoNhienLieuNhieuNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var list = TimPhuongTienCoTheLan().collection;
+            var max = FindMaxNhienLieu(list);
+            foreach (var item in list)
+            {
+                if (item.NhienLieu == max)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien LocPhuongTienTheoNamSanXuat(int nam)
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            foreach(var item in collection)
+            {
+                if(item.NamSanXuat == nam)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public void SapXepPhuongTienTheoTen()
+        {
+            for (int i = 0; i < collection.Count-1; i++)
+            {
+                for(int j = i+1; j < collection.Count; j++)
+                {
+                    if (string.Compare(collection[i].Name, collection[j].Name) > 0)
+                    {
+                        Swap(i, j, collection);
+                    }
+                }
+            }
+        }
+
+        public bool KiemTraCoTonTai(string nhaSanXuat)
+        {
+            foreach(var item in collection)
+            {
+                if(item.NhaSanXuat == nhaSanXuat) return true;
+            }
+            return false;
+        }
+
+        public DanhSachPhuongTien NhomPhuongTienTheoNhaSanXuat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            foreach(var item in collection)
+            {
+                if(!res.KiemTraCoTonTai(item.NhaSanXuat))
+                {
+                    foreach(var item2 in collection)
+                    {
+                        if(string.Compare(item2.NhaSanXuat, item.NhaSanXuat) == 0)
+                        {
+                            res.Them(item2);
+                        }
+                    }
+                }
+                res.Them(item);
+            }
+            return res;
+        }
+
+        public double TinhTongTatCaTocDoCuaPhuongTien()
+        {
+            double res = 0; 
+            foreach(var item in collection)
+            {
+                res += item.TocDo;
+            }
+            return res;
+        }
+
+        public double TinhTrungBinhTocDo()
+        {
+            
+            return TinhTongTatCaTocDoCuaPhuongTien() / collection.Count;
+        }
+
+        public double FindMaxQuangDuong()
+        {
+            double max = 0;
+            foreach (var item in collection)
+            {
+                var tmp = item.TinhQuangDuong();
+                if (tmp > max)
+                {
+                    max = tmp;
+                }
+            }
+            return max;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienDiDuocQuangDuongDaiNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var max = FindMaxQuangDuong();
+            foreach (var item in collection)
+            {
+                var tmp = item.TinhQuangDuong();
+                if(tmp == max)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien CacPhuongTienCoTheBayVaCoNhienLieuTrenMotNguong(double nhienLieu)
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var list = TimPhuongTienCoTheBay().collection;
+            foreach (var item in list)
+            {
+                if(item.NhienLieu > nhienLieu)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien CacPhuongTienCoTheLaiVaCoNhienLieuTrenMotNguong(double nhienLieu)
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var list = TimPhuongTienCoTheLai().collection;
+            foreach (var item in list)
+            {
+                if (item.NhienLieu > nhienLieu)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien DanhSachPhuongTienCanBaoTri()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            foreach(var item in collection)
+            {
+                if(item.TinhQuangDuong() > 10000)
+                {
+                    res.Them(item);
+                }
+            }
+
+
+            return res;
+        }
+
+
+        public DanhSachPhuongTien KiemTraPhuongTienSauNam(int nam)
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            foreach(var item in collection)
+            {
+                if(item.NamSanXuat < nam)
+                {
+                    res.Them(item);
+                }
+            }
+
+            return res;
+        }
+
+        public DanhSachPhuongTien DanhSachPhuongTienDuocSanXuatBoiNhaSanXuat(string nhaSanXuat)
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            foreach(var item in collection)
+            {
+                if(string.Compare(item.NhaSanXuat, nhaSanXuat) == 0)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public List<string> LayLoaiPhuongTien()
+        {
+            List<string> list = new List<string>();
+            foreach (var item in collection)
+            {
+                if (!list.Contains(item.GetType().Name))
+                {
+                    list.Add(item.GetType().Name);
+                }
+            }
+            return list;
+        }
+
+        public void BaoCaoChiTietTheoLoai()
+        {
+            string[] daXuLy = new string[collection.Count];
+            int daXuLyCount = 0;
+
+            for (int i = 0; i < collection.Count; i++)
+            {
+                string loai = collection[i].GetType().Name;
+
+                bool daTonTai = false;
+                for (int j = 0; j < daXuLyCount; j++)
+                {
+                    if (daXuLy[j] == loai)
+                    {
+                        daTonTai = true;
+                        break;
+                    }
+                }
+
+                if (!daTonTai)
+                {
+                    int count = 0;
+                    double tongTocDo = 0;
+                    double tongNhienLieu = 0;
+
+                    for (int k = 0; k < collection.Count; k++)
+                    {
+                        if (collection[k].GetType().Name == loai)
+                        {
+                            count++;
+                            tongTocDo += collection[k].TocDo;
+                            tongNhienLieu += collection[k].NhienLieu;
+                        }
+                    }
+
+                    double avgTocDo = count > 0 ? tongTocDo / count : 0;
+                    double avgNhienLieu = count > 0 ? tongNhienLieu / count : 0;
+
+                    Console.WriteLine($"Loại: {loai}");
+                    Console.WriteLine($"  - Số lượng: {count}");
+                    Console.WriteLine($"  - Tốc độ trung bình: {avgTocDo} km/h");
+                    Console.WriteLine($"  - Nhiên liệu trung bình: {avgNhienLieu} L\n");
+
+                    // Ghi lại loại đã xử lý
+                    daXuLy[daXuLyCount] = loai;
+                    daXuLyCount++;
+                }
+            }
+        }
+
+        public double FinMinTocDo(List<Vehicle> list)
+        {
+            double min = double.MaxValue;
+            foreach(var item in list)
+            {
+                if(item.TocDo < min)
+                {
+                    min = item.TocDo;
+                }
+            }
+            return min;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoTheLaiCoTocDoNhoNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var min = FinMinTocDo(TimPhuongTienCoTheLai().collection);
+            foreach(var item in collection)
+            {
+                if(item.TocDo == min)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoTheLanCoTocDoNhoNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var min = FinMinTocDo(TimPhuongTienCoTheLan().collection);
+            foreach (var item in collection)
+            {
+                if (item.TocDo == min)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public DanhSachPhuongTien TimPhuongTienCoTheNoiCoTocDoNhoNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var min = FinMinTocDo(TimPhuongTienCoTheNoi().collection);
+            foreach (var item in collection)
+            {
+                if (item.TocDo == min)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+        public DanhSachPhuongTien TimPhuongTienCoTheBayCoTocDoNhoNhat()
+        {
+            DanhSachPhuongTien res = new DanhSachPhuongTien();
+            var min = FinMinTocDo(TimPhuongTienCoTheBay().collection);
+            foreach (var item in collection)
+            {
+                if (item.TocDo == min)
+                {
+                    res.Them(item);
+                }
+            }
+            return res;
+        }
+
+        public double TongMucNhienLieuCuaPhuongTienCoTheLai()
+        {
+            double res = 0.0;
+            var list = TimPhuongTienCoTheLai().collection;
+            foreach(var item in list)
+            {
+                res += item.NhienLieu;
+            }
+            return res;
+        }
+
+        public double TongMucNhienLieuCuaPhuongTienCoTheLan()
+        {
+            double res = 0.0;
+            var list = TimPhuongTienCoTheLan().collection;
+            foreach (var item in list)
+            {
+                res += item.NhienLieu;
+            }
+            return res;
+        }
+
+        public double TongMucNhienLieuCuaPhuongTienCoTheBay()
+        {
+            double res = 0.0;
+            var list = TimPhuongTienCoTheBay().collection;
+            foreach (var item in list)
+            {
+                res += item.NhienLieu;
+            }
+            return res;
+        }
+
+        public double TongMucNhienLieuCuaPhuongTienCoTheNoi()
+        {
+            double res = 0.0;
+            var list = TimPhuongTienCoTheNoi().collection;
+            foreach (var item in list)
+            {
+                res += item.NhienLieu;
+            }
+            return res;
+        }
+
 
     }
 }

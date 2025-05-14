@@ -1,0 +1,7 @@
+C:\Users\nguyen.cao\Desktop\codec++\oop\baiTapTrenLMS\OOP_ONTAP3\OOP_ONTAP3\bin\Debug\OOP_ONTAP3.exe.config
+C:\Users\nguyen.cao\Desktop\codec++\oop\baiTapTrenLMS\OOP_ONTAP3\OOP_ONTAP3\bin\Debug\OOP_ONTAP3.exe
+C:\Users\nguyen.cao\Desktop\codec++\oop\baiTapTrenLMS\OOP_ONTAP3\OOP_ONTAP3\bin\Debug\OOP_ONTAP3.pdb
+C:\Users\nguyen.cao\Desktop\codec++\oop\baiTapTrenLMS\OOP_ONTAP3\OOP_ONTAP3\obj\Debug\OOP_ONTAP3.csproj.AssemblyReference.cache
+C:\Users\nguyen.cao\Desktop\codec++\oop\baiTapTrenLMS\OOP_ONTAP3\OOP_ONTAP3\obj\Debug\OOP_ONTAP3.csproj.CoreCompileInputs.cache
+C:\Users\nguyen.cao\Desktop\codec++\oop\baiTapTrenLMS\OOP_ONTAP3\OOP_ONTAP3\obj\Debug\OOP_ONTAP3.exe
+C:\Users\nguyen.cao\Desktop\codec++\oop\baiTapTrenLMS\OOP_ONTAP3\OOP_ONTAP3\obj\Debug\OOP_ONTAP3.pdb

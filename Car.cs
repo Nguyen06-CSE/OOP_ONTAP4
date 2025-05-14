@@ -8,8 +8,8 @@ namespace OOP_ONTAP3
 {
     public class Car : Vehicle, IDriveable
     {
-        public Car (string name, double tocDo, double nhienLieu, string viTri, double nhienLieuTieuHao) 
-            : base (name, tocDo, nhienLieu, viTri   , nhienLieuTieuHao) { }
+        public Car (string name, double tocDo, double nhienLieu, string viTri, double nhienLieuTieuHao, int namSanXuat, string nhaSanXuat) 
+            : base (name, tocDo, nhienLieu, viTri   , nhienLieuTieuHao, namSanXuat, nhaSanXuat) { }
         public void Drive()
         {
             Console.WriteLine($"Dang lai: {Name} ");
@@ -18,5 +18,7 @@ namespace OOP_ONTAP3
         {
             Console.WriteLine($"phuong tien: {Name} - hanh vi: lai");
         }
+
+
     }
 }

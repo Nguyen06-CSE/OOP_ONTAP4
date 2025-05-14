@@ -8,8 +8,8 @@ namespace OOP_ONTAP3
 {
     public class Seaplane : Vehicle, IFlyable, IFloatable
     {
-        public Seaplane(string name, double tocDo, double nhienLieu, string viTri, double nhienLieuTieuHao)
-            : base(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao) { }
+        public Seaplane(string name, double tocDo, double nhienLieu, string viTri, double nhienLieuTieuHao, int namSanXuat, string nhaSanXuat)
+            : base(name, tocDo, nhienLieu, viTri, nhienLieuTieuHao, namSanXuat, nhaSanXuat) { }
 
         public void Fly()
         {

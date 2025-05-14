@@ -1,0 +1,15 @@
+ten phuong tien: ToyotaCamry, toc do: 180, nhien lieu50, vi tri: Hanoi
+ten phuong tien: HondaCivic, toc do: 200, nhien lieu45, vi tri: HoChiMinh
+ten phuong tien: FordFocus, toc do: 190, nhien lieu47, vi tri: DaNang
+ten phuong tien: YamahaBoat, toc do: 70, nhien lieu100, vi tri: HaLong
+ten phuong tien: SpeedFisher, toc do: 80, nhien lieu120, vi tri: PhuQuoc
+ten phuong tien: LuxuryCruiser, toc do: 60, nhien lieu200, vi tri: NhaTrang
+ten phuong tien: SeaEagle, toc do: 300, nhien lieu150, vi tri: HaNoi
+ten phuong tien: FloatWing, toc do: 280, nhien lieu160, vi tri: CanTho
+ten phuong tien: HydroJet, toc do: 310, nhien lieu140, vi tri: DaNang
+ten phuong tien: DeepExplorer, toc do: 40, nhien lieu300, vi tri: TruongSa
+ten phuong tien: SeaCrawler, toc do: 35, nhien lieu280, vi tri: HoangSa
+ten phuong tien: AquaHunter, toc do: 45, nhien lieu310, vi tri: PhuYen
+ten phuong tien: KiaMorning, toc do: 150, nhien lieu35, vi tri: Hue
+ten phuong tien: MercedesC200, toc do: 220, nhien lieu60, vi tri: Hanoi
+ten phu

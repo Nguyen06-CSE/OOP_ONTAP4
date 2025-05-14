@@ -15,21 +15,29 @@ namespace OOP_ONTAP3
 
         public double NhienLieuTieuHao {get; set;}
 
+        public int NamSanXuat { get; set; }
+
+        public string NhaSanXuat { get; set; }
         protected Vehicle(string name)
         {
             Name = name;
             TocDo = 0;
             NhienLieu = 100;     
             ViTri = "bai do";
+            NhienLieuTieuHao = 100;
+            NamSanXuat = 2025;
+            NhaSanXuat = "";
         }
 
-        protected Vehicle(string name, double tocDo, double nhienLieu, string viTri, double nhienLieuTieuHao)
+        protected Vehicle(string name, double tocDo, double nhienLieu, string viTri, double nhienLieuTieuHao, int namSanXuat, string nhaSanXuat)
         {
             Name = name;
             TocDo = tocDo;
             NhienLieu = nhienLieu;
             ViTri = viTri;
             NhienLieuTieuHao = nhienLieuTieuHao;
+            NamSanXuat = namSanXuat;
+            NhaSanXuat = nhaSanXuat;
         }
 
         public abstract void DisplayInfo();
@@ -77,6 +85,14 @@ namespace OOP_ONTAP3
            
             return quangDuong;
         }
+
+        public override string ToString()
+        {
+            return $"ten: {Name}, toc do: {TocDo} km/h, nhien lieu: {NhienLieu} L, " +
+                   $"vi tri: {ViTri}, tieu hao: {NhienLieuTieuHao} L, " +
+                   $"nam san xuat: {NamSanXuat}, nha san xuat: {NhaSanXuat}";
+        }
+
 
     }
 }
